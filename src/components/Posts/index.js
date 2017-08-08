@@ -14,10 +14,11 @@ class Posts extends Component {
      * Handles getting the post (or posts) from WordPress.
      */
     handlePosts = ( async () => {
-        let endpoint = 'http://localhost:8080/wp/wp-json/wp/v2';
-        let response = await WordPress.getPosts(endpoint);
-        console.log(response);
+        let endpoint = `http://localhost:8080/wp/wp-json/wp/v2`;
+        let id = this.props.match.params.id;
 
+        let response = await WordPress.getPosts(endpoint, id);
+        
         this.setState({ posts: response });
     })
 
@@ -28,13 +29,21 @@ class Posts extends Component {
         this.handlePosts();
     }
 
+    componentDidUpdate = () => {
+        this.handlePosts();
+    }
+
+    componentWillUnmount = () => {
+        this.setState({ posts: [] });
+    }
+
     render = () => {
         return (
-            <div id="posts">
+            <section id="posts">
                 {this.state.posts.map(post => {
                     return <Post {...post} key={post.id} />
                 })}
-            </div>
+            </section>
         )
     }
 }
