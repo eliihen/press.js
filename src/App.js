@@ -1,17 +1,12 @@
 import React, { Component } from 'react';
 import {
     BrowserRouter as Router,
-    Route,
-    Link
+    Route
 } from 'react-router-dom';
 import Header from './components/Header';
-import Posts from './components/Posts';
+import PostsList from './components/PostsList';
+import SinglePost from './components/SinglePost';
 import Home from './components/Home';
-
-import UIkit from 'uikit';
-import Icons from 'uikit/dist/js/uikit-icons';
-import 'uikit/dist/css/uikit.css';
-UIkit.use(Icons);
 
 
 
@@ -19,16 +14,25 @@ class App extends Component {
     render() {
         return (
             <Router>
-                <div id="App">
+                <div id="app">
                     <Header />
-                    <main className="App">
+                    <Main>
                         <Route exact path="/" component={Home} />
-                        <Route path="/posts/:id?" component={Posts} />
-                    </main>
+                        <Route exact path="/posts" component={PostsList} />
+                        <Route exact path="/posts/:id" component={SinglePost} />
+                    </Main>
                 </div>
             </Router>
         );
     }
 }
+
+const Main = props => (
+    <main className="uk-section">
+        <div className="uk-container">
+            {props.children}
+        </div>
+    </main>
+)
 
 export default App;
