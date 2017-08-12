@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PostMeta from './PostMeta';
 
 /**
  * Component for a single post.
  */
 const Post = props => (
     <PostWrapper>
-        <PostHeader title={props.title.rendered} id={props.id}/>
+        <PostHeader title={props.title.rendered} id={props.id} />
+        <PostMeta {...props["_embedded"]} />
+        <p className="uk-article-meta">Written by {props._embedded.author[0].name}</p>
         <div
             className="post-content"
             dangerouslySetInnerHTML={props.isExcerpt ? postContent(props.excerpt.rendered) : postContent(props.content.rendered)}

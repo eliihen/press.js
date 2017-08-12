@@ -1,14 +1,14 @@
 const baseURL = 'http://localhost:8080/wp/wp-json/wp/v2';
 
 export function getPostsList() {
-    const url = `${baseURL}/posts`;
+    const url = `${baseURL}/posts?_embed`;
     const results = get(url);
 
     return results;
 }
 
 export function getSinglePost(id) {
-    const url = `${baseURL}/posts/${id}`;
+    const url = `${baseURL}/posts/${id}?_embed`;
     const results = get(url);
 
     return results;
