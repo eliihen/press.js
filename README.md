@@ -24,7 +24,7 @@ a JSON result. If not, something went wrong.
 ### Press.js
 
 To run press.js locally, first make sure you are running the correct version of
-node.js and npm. Node.js > 8 is highly encouraged, and can be installed using
+node.js and npm. Node.js >= 8 is highly encouraged, and can be installed using
 [nvm][nvm] with the following command.
 
     $ nvm install
